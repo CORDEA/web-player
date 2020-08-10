@@ -1,9 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import {createStore} from "redux";
 import {rootReducer} from "./store";
 import {Provider} from "react-redux";
+import {Fab} from "@material/react-fab";
+import MaterialIcon from "@material/react-material-icon";
+import './App.css';
+import '@material/react-fab/dist/fab.css';
+import '@material/react-material-icon/dist/material-icon.css';
 
 const store = createStore(rootReducer)
 
@@ -11,20 +14,9 @@ function App(): JSX.Element {
   return (
     <Provider store={store}>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="App-fab">
+          <Fab icon={<MaterialIcon icon="play_arrow"/>} />
+        </div>
       </div>
     </Provider>
   );
