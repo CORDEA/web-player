@@ -1,5 +1,4 @@
-import {PlayerState} from "./PlayerState";
-import {PlayerActionTypes} from "./PlayerAction";
+import {PlayerActionTypes, PlayerState} from "./types";
 
 const initialState: PlayerState = {
   isPlaying: false

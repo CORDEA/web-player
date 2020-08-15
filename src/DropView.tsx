@@ -2,7 +2,7 @@ import React from "react";
 import MaterialIcon from "@material/react-material-icon";
 import "./DropView.css";
 import {connect, ConnectedProps} from "react-redux";
-import {dropFile} from "./store/actions";
+import {dropFile} from "./store/player/actions";
 
 const mapDispatch = {
   drop: (files: FileList) => dropFile(files)

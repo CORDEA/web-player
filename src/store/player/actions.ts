@@ -1,4 +1,4 @@
-import {DROP, PlayerActionTypes} from "./PlayerAction";
+import {DROP, PlayerActionTypes} from "./types";
 
 export function dropFile(files: FileList): PlayerActionTypes {
   return {

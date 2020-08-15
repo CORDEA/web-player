@@ -1,3 +1,7 @@
+export interface PlayerState {
+  isPlaying: boolean
+}
+
 export const PLAY = "PLAY"
 export const PAUSE = "PAUSE"
 export const DROP = "DROP"
