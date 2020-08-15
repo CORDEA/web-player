@@ -8,6 +8,7 @@ import './App.css';
 import '@material/react-fab/dist/fab.css';
 import '@material/react-material-icon/dist/material-icon.css';
 import DropView from "./DropView";
+import ListItems from "./ListItems";
 
 const store = createStore(rootReducer)
 
@@ -16,6 +17,7 @@ function App(): JSX.Element {
     <Provider store={store}>
       <div className="App">
         <div className="App-container">
+          <ListItems />
           <DropView />
         </div>
         <div className="App-fab">
