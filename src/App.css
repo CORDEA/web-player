@@ -2,6 +2,11 @@
     height: 100vh;
 }
 
+.App-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .App-fab {
     position: fixed;
     right: 16px;

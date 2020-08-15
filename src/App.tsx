@@ -7,6 +7,7 @@ import MaterialIcon from "@material/react-material-icon";
 import './App.css';
 import '@material/react-fab/dist/fab.css';
 import '@material/react-material-icon/dist/material-icon.css';
+import DropView from "./DropView";
 
 const store = createStore(rootReducer)
 
@@ -14,6 +15,9 @@ function App(): JSX.Element {
   return (
     <Provider store={store}>
       <div className="App">
+        <div className="App-container">
+          <DropView />
+        </div>
         <div className="App-fab">
           <Fab icon={<MaterialIcon icon="play_arrow"/>} />
         </div>
