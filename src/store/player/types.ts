@@ -4,7 +4,7 @@ export interface PlayerState {
 }
 
 export interface Music {
-  id: number
+  id: string
   file: File
 }
 

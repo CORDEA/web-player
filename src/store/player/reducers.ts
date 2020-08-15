@@ -1,4 +1,5 @@
 import {PlayerActionTypes, PlayerState} from "./types";
+import {v4 as uuid} from 'uuid';
 
 const initialState: PlayerState = {
   isPlaying: false,
@@ -16,7 +17,7 @@ function playerReducer(state = initialState, action: PlayerActionTypes): PlayerS
     case "DROP": {
       return {
         ...state,
-        musics: state.musics.concat({id: 0, file: action.files[0]})
+        musics: state.musics.concat({id: uuid(), file: action.files[0]})
       }
     }
     default:
