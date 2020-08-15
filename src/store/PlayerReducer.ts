@@ -13,6 +13,11 @@ function playerReducer(state = initialState, action: PlayerActionTypes): PlayerS
     case "PAUSE": {
       return state
     }
+    case "DROP": {
+      return state
+    }
+    default:
+      return state
   }
 }
 
