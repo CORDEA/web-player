@@ -14,7 +14,10 @@ function playerReducer(state = initialState, action: PlayerActionTypes): PlayerS
       return state
     }
     case "DROP": {
-      return state
+      return {
+        ...state,
+        musics: state.musics.concat({id: 0, file: action.files[0]})
+      }
     }
     default:
       return state
