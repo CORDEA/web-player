@@ -14,7 +14,7 @@ type Props = PropsFromRedux
 
 const ListItems = (props: Props) => (
   <div>
-    {props.musics.map(music => <ListItem music={music}/>)}
+    {props.musics.map(music => <ListItem music={music} key={music.id}/>)}
   </div>
 )
 
