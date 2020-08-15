@@ -1,5 +1,11 @@
 export interface PlayerState {
-  isPlaying: boolean
+  isPlaying: boolean,
+  musics: Music[]
+}
+
+export interface Music {
+  id: number
+  file: File
 }
 
 export const PLAY = "PLAY"

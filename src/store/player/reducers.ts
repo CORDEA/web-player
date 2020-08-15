@@ -1,7 +1,8 @@
 import {PlayerActionTypes, PlayerState} from "./types";
 
 const initialState: PlayerState = {
-  isPlaying: false
+  isPlaying: false,
+  musics: []
 }
 
 function playerReducer(state = initialState, action: PlayerActionTypes): PlayerState {
