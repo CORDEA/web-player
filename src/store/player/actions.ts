@@ -1,4 +1,4 @@
-import {DROP, PlayerActionTypes, PlayerState} from "./types";
+import {DROP, PLAY, PlayerActionTypes, PlayerState} from "./types";
 import {ThunkAction} from "redux-thunk";
 import {v4 as uuid} from 'uuid';
 
@@ -27,3 +27,7 @@ export const dropFile = (
     }
   )
 }
+
+export const play = (): PlayerActionTypes => ({
+  type: PLAY
+})
