@@ -1,10 +1,12 @@
-import {DROP, PAUSE, PLAY, PlayerActionTypes, PlayerState} from "./types";
+import {DROP, PAUSE, PLAY, PlayerActionTypes} from "./types";
 import {ThunkAction} from "redux-thunk";
 import {v4 as uuid} from 'uuid';
+import {Howl} from "howler";
+import {RootState} from "../index";
 
 export const dropFile = (
   files: FileList
-): ThunkAction<void, PlayerState, unknown, PlayerActionTypes> => async dispatch => {
+): ThunkAction<void, RootState, unknown, PlayerActionTypes> => async dispatch => {
   const file = files[0]
   const result: string = await new Promise(resolve => {
     const reader = new FileReader()
@@ -28,10 +30,42 @@ export const dropFile = (
   )
 }
 
-export const play = (): PlayerActionTypes => ({
-  type: PLAY
-})
+export const play = (): ThunkAction<void, RootState, unknown, PlayerActionTypes> =>
+  async (dispatch, getState) => {
+    const state = getState()
+    if (state.player.musics.length === 0) {
+      return
+    }
+    const player = state.player.player ?? new Howl({
+      src: [state.player.musics[0].url]
+    })
+    const onPlay = new Promise(resolve => {
+      player.once("play", () => {
+        resolve()
+      })
+    })
+    player.play()
+    await onPlay
+    dispatch({
+      type: PLAY,
+      player: player
+    })
+  }
 
-export const pause = (): PlayerActionTypes => ({
-  type: PAUSE
-})
+export const pause = (): ThunkAction<void, RootState, unknown, PlayerActionTypes> =>
+  async (dispatch, getState) => {
+    const player = getState().player.player
+    if (!player) {
+      return
+    }
+    const onPause = new Promise(resolve => {
+      player.once("pause", () => {
+        resolve()
+      })
+    })
+    player.pause()
+    await onPause
+    dispatch({
+      type: PAUSE
+    })
+  }

@@ -4,9 +4,10 @@ import "./DropView.css";
 import {connect, ConnectedProps} from "react-redux";
 import {dropFile} from "./store/player/actions";
 import {ThunkDispatch} from "redux-thunk";
-import {PlayerActionTypes, PlayerState} from "./store/player/types";
+import {PlayerActionTypes} from "./store/player/types";
+import {RootState} from "./store";
 
-const mapDispatch = (dispatch: ThunkDispatch<PlayerState, null, PlayerActionTypes>) => ({
+const mapDispatch = (dispatch: ThunkDispatch<RootState, null, PlayerActionTypes>) => ({
   drop: (files: FileList) => dispatch(dropFile(files))
 })
 

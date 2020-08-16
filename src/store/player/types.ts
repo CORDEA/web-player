@@ -2,7 +2,7 @@ import {Howl} from "howler";
 
 export interface PlayerState {
   isPlaying: boolean,
-  currentMusic: Howl | null,
+  player: Howl | null,
   musics: Music[]
 }
 
@@ -17,7 +17,8 @@ export const PAUSE = "PAUSE"
 export const DROP = "DROP"
 
 interface PlayAction {
-  type: typeof PLAY
+  type: typeof PLAY,
+  player: Howl
 }
 
 interface PauseAction {
