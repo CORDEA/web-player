@@ -3,6 +3,7 @@ import {Howl} from "howler";
 
 const initialState: PlayerState = {
   isPlaying: false,
+  currentMusic: null,
   musics: []
 }
 
@@ -18,11 +19,16 @@ function playerReducer(state = initialState, action: PlayerActionTypes): PlayerS
       sound.play()
       return {
         ...state,
-        isPlaying: true
+        isPlaying: true,
+        currentMusic: sound
       }
     }
     case "PAUSE": {
-      return state
+      state.currentMusic?.pause()
+      return {
+        ...state,
+        isPlaying: false
+      }
     }
     case "DROP": {
       return {

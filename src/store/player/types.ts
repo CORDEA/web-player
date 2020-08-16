@@ -1,5 +1,8 @@
+import {Howl} from "howler";
+
 export interface PlayerState {
   isPlaying: boolean,
+  currentMusic: Howl | null,
   musics: Music[]
 }
 
