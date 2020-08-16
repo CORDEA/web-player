@@ -5,6 +5,7 @@ export interface PlayerState {
 
 export interface Music {
   id: string
+  url: string
   file: File
 }
 
@@ -22,7 +23,7 @@ interface PauseAction {
 
 interface DropAction {
   type: typeof DROP
-  files: FileList
+  music: Music
 }
 
 export type PlayerActionTypes = PlayAction | PauseAction | DropAction

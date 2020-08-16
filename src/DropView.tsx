@@ -3,10 +3,12 @@ import MaterialIcon from "@material/react-material-icon";
 import "./DropView.css";
 import {connect, ConnectedProps} from "react-redux";
 import {dropFile} from "./store/player/actions";
+import {ThunkDispatch} from "redux-thunk";
+import {PlayerActionTypes, PlayerState} from "./store/player/types";
 
-const mapDispatch = {
-  drop: (files: FileList) => dropFile(files)
-}
+const mapDispatch = (dispatch: ThunkDispatch<PlayerState, null, PlayerActionTypes>) => ({
+  drop: (files: FileList) => dispatch(dropFile(files))
+})
 
 const connector = connect(null, mapDispatch)
 
