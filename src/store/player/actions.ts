@@ -1,4 +1,4 @@
-import {DROP, PAUSE, PLAY, PlayerActionTypes} from "./types";
+import {DROP, Music, PAUSE, PLAY, PlayerActionTypes} from "./types";
 import {ThunkAction} from "redux-thunk";
 import {v4 as uuid} from 'uuid';
 import {Howl} from "howler";
@@ -30,6 +30,16 @@ export const dropFile = (
   )
 }
 
+const _play = async (player: Howl) => {
+  const onPlay = new Promise(resolve => {
+    player.once("play", () => {
+      resolve()
+    })
+  })
+  player.play()
+  await onPlay
+}
+
 export const play = (): ThunkAction<void, RootState, unknown, PlayerActionTypes> =>
   async (dispatch, getState) => {
     const state = getState()
@@ -39,16 +49,23 @@ export const play = (): ThunkAction<void, RootState, unknown, PlayerActionTypes>
     const player = state.player.player ?? new Howl({
       src: [state.player.musics[0].url]
     })
-    const onPlay = new Promise(resolve => {
-      player.once("play", () => {
-        resolve()
-      })
-    })
-    player.play()
-    await onPlay
+    await _play(player)
     dispatch({
       type: PLAY,
-      player: player
+      player: player,
+    })
+  }
+
+export const playWith = (music: Music): ThunkAction<void, RootState, unknown, PlayerActionTypes> =>
+  async (dispatch, getState) => {
+    const state = getState()
+    const player = state.player.player ?? new Howl({
+      src: [music.url]
+    })
+    await _play(player)
+    dispatch({
+      type: PLAY,
+      player: player,
     })
   }
 
